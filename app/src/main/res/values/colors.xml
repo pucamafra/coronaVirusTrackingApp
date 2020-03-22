@@ -10,6 +10,7 @@
     <color name="dark_red">#d0021b</color>
 
     <color name="home_background">#22282B</color>
+    <color name="country_divider_color">#44FFFFFF</color>
     <color name="green">#1B5E20</color>
 
     <color name="slate_grey_100">#FF5D657B</color>

@@ -3,4 +3,6 @@
     <string name="dead">Mortos</string>
     <string name="recovered">Recuperados</string>
     <string name="last_update">Última atualização</string>
+    <string name="country">Pais</string>
+    <string name="country_search_hint">Busque um pais</string>
 </resources>

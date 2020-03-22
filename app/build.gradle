@@ -29,6 +29,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    androidExtensions {
+        // https://kotlinlang.org/docs/tutorials/android-plugin.html#experimental-mode
+        experimental = true
+    }
+
     kotlinOptions {
         jvmTarget = "1.8"
     }
@@ -42,6 +47,11 @@ dependencies {
     def daggerVersion = "2.16"
     def rxJavaVersion = "2.2.1"
     def rxAndroidVersion = "2.1.1"
+    def flexibleAdapterVersion = "5.0.6"
+    def flexibleAdapterUIVersion = "1.0.0-b5"
+
+    implementation "eu.davidea:flexible-adapter:$flexibleAdapterVersion"
+    implementation "eu.davidea:flexible-adapter-ui:$flexibleAdapterUIVersion"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.2.0'
@@ -66,6 +76,8 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
     implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+
+    implementation "com.github.blongho:worldCountryData:1.4"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

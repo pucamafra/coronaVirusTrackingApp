@@ -18,4 +18,9 @@
         <item name="android:textSize">24sp</item>
     </style>
 
+    <style name="SearchView" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:editTextColor">@color/red</item>
+        <item name="android:textColorHint">@color/slate_grey_100</item>
+    </style>
+
 </resources>

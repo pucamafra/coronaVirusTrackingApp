@@ -1,6 +1,8 @@
 package com.marlonmafra.coronavirustrackingapp.feafures.home.overview
 
+import android.content.Context
 import android.os.Bundle
+import android.telephony.TelephonyManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,9 +13,13 @@ import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.extensions.format
 import com.marlonmafra.coronavirustrackingapp.feafures.home.HomeViewModel
 import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
-import kotlinx.android.synthetic.main.fragment_overview.confirmedView
-import kotlinx.android.synthetic.main.fragment_overview.deadView
-import kotlinx.android.synthetic.main.fragment_overview.recoveredView
+import kotlinx.android.synthetic.main.fragment_overview.globalConfirmedView
+import kotlinx.android.synthetic.main.fragment_overview.globalDeadView
+import kotlinx.android.synthetic.main.fragment_overview.globalRecoveredView
+import kotlinx.android.synthetic.main.fragment_overview.localConfirmedView
+import kotlinx.android.synthetic.main.fragment_overview.localDeadView
+import kotlinx.android.synthetic.main.fragment_overview.localRecoveredView
+import kotlinx.android.synthetic.main.fragment_overview.yourLocationLabel
 
 class OverviewFragment : Fragment() {
 
@@ -22,6 +28,11 @@ class OverviewFragment : Fragment() {
     }
 
     private val homeViewModel: HomeViewModel by activityViewModels()
+    private val telephonyManager: TelephonyManager by lazy {
+        requireActivity().getSystemService(
+            Context.TELEPHONY_SERVICE
+        ) as TelephonyManager
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,8 +47,20 @@ class OverviewFragment : Fragment() {
     }
 
     private fun setupLayout(response: TrackingResponse) = with(response) {
-        confirmedView.setValue(latest.confirmed.format())
-        deadView.setValue(latest.deaths.format())
-        recoveredView.setValue(latest.recovered.format())
+        globalConfirmedView.setValue(latest.confirmed.format())
+        globalDeadView.setValue(latest.deaths.format())
+        globalRecoveredView.setValue(latest.recovered.format())
+
+        val countryCodeValue = telephonyManager.networkCountryIso
+        response.locations.find { it.countryCode.equals(countryCodeValue, true) }?.let {
+            yourLocationLabel.text = when {
+                it.province.isEmpty() -> it.country
+                else -> "${it.country}/${it.province}"
+            }
+
+            localConfirmedView.setValue(it.latest.confirmed.format())
+            localDeadView.setValue(it.latest.deaths.format())
+            localRecoveredView.setValue(it.latest.recovered.format())
+        }
     }
 }

@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.marlonmafra.coronavirustrackingapp.CoronaTrackingApplication
 import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.extensions.formatTo
+import com.marlonmafra.coronavirustrackingapp.feafures.home.countries.CountriesFragment
 import com.marlonmafra.coronavirustrackingapp.feafures.home.overview.OverviewFragment
 import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
 import kotlinx.android.synthetic.main.activity_main.latestUpdateValue
@@ -46,10 +47,10 @@ class MainActivity : AppCompatActivity() {
         val fragmentList: MutableList<Fragment> = ArrayList()
         val titles: MutableList<String> = ArrayList()
         titles.add("Overview")
-        titles.add("Table")
+        titles.add("Countries")
 
         fragmentList.add(OverviewFragment.newInstance())
-        fragmentList.add(OverviewFragment.newInstance())
+        fragmentList.add(CountriesFragment.newInstance())
 
         subTabAdapter = SubTabAdapter(supportFragmentManager, fragmentList)
         viewPager.adapter = this.subTabAdapter

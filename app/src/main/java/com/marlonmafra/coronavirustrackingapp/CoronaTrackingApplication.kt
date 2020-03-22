@@ -1,6 +1,7 @@
 package com.marlonmafra.coronavirustrackingapp
 
 import android.app.Application
+import com.blongho.country_data.World
 import com.marlonmafra.coronavirustrackingapp.di.ApplicationComponent
 import com.marlonmafra.coronavirustrackingapp.di.DaggerApplicationComponent
 import com.marlonmafra.coronavirustrackingapp.di.DataModule
@@ -15,6 +16,7 @@ class CoronaTrackingApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         setupDagger()
+        World.init(applicationContext);
     }
 
     private fun setupDagger() {

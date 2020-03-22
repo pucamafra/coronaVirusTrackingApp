@@ -6,42 +6,105 @@
     android:layout_height="match_parent"
     tools:background="@color/home_background">
 
-    <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
-        android:id="@+id/confirmedView"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/globalLabel"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
+        android:text="Global"
+        android:textColor="@color/red"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
+        android:id="@+id/globalConfirmedView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         app:label="@string/confirmed"
         app:labelTextColor="@color/slate_grey_100"
-        app:layout_constraintEnd_toStartOf="@+id/deadView"
+        app:layout_constraintEnd_toStartOf="@+id/globalDeadView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/globalLabel"
         app:valueTextColor="@color/white"
         tools:value="222.333" />
 
     <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
-        android:id="@+id/deadView"
+        android:id="@+id/globalDeadView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:label="@string/dead"
         app:labelTextColor="@color/slate_grey_100"
-        app:layout_constraintEnd_toStartOf="@+id/recoveredView"
-        app:layout_constraintStart_toEndOf="@+id/confirmedView"
-        app:layout_constraintTop_toTopOf="@+id/confirmedView"
+        app:layout_constraintEnd_toStartOf="@+id/globalRecoveredView"
+        app:layout_constraintStart_toEndOf="@+id/globalConfirmedView"
+        app:layout_constraintTop_toTopOf="@+id/globalConfirmedView"
         app:valueTextColor="@color/red"
         tools:value="222.333" />
 
     <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
-        android:id="@+id/recoveredView"
+        android:id="@+id/globalRecoveredView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         app:label="@string/recovered"
         app:labelTextColor="@color/slate_grey_100"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/deadView"
-        app:layout_constraintTop_toTopOf="@+id/confirmedView"
+        app:layout_constraintStart_toEndOf="@+id/globalDeadView"
+        app:layout_constraintTop_toTopOf="@+id/globalDeadView"
+        app:valueTextColor="@color/green"
+        tools:value="222.333" />
+
+    <TextView
+        android:id="@+id/yourLocationLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:textColor="@color/red"
+        android:textSize="21sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/globalConfirmedView"
+        tools:text="Your Location" />
+
+    <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
+        android:id="@+id/localConfirmedView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:label="@string/confirmed"
+        app:labelTextColor="@color/slate_grey_100"
+        app:layout_constraintEnd_toStartOf="@+id/localDeadView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yourLocationLabel"
+        app:valueTextColor="@color/white"
+        tools:value="222.333" />
+
+    <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
+        android:id="@+id/localDeadView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:label="@string/dead"
+        app:labelTextColor="@color/slate_grey_100"
+        app:layout_constraintEnd_toStartOf="@+id/localRecoveredView"
+        app:layout_constraintStart_toEndOf="@+id/localConfirmedView"
+        app:layout_constraintTop_toTopOf="@+id/localConfirmedView"
+        app:valueTextColor="@color/red"
+        tools:value="222.333" />
+
+    <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
+        android:id="@+id/localRecoveredView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:label="@string/recovered"
+        app:labelTextColor="@color/slate_grey_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/localDeadView"
+        app:layout_constraintTop_toTopOf="@+id/localConfirmedView"
         app:valueTextColor="@color/green"
         tools:value="222.333" />
 
