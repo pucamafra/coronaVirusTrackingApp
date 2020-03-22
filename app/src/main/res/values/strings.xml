@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Corona Virus Tracking App</string>
+    <string name="label">Label</string>
+    <string name="value">Value</string>
+    <string name="confirmed">Confirmed</string>
+    <string name="dead">Dead</string>
+    <string name="recovered">Recovered</string>
+    <string name="last_update">Last update</string>
 </resources>

@@ -3,6 +3,7 @@ package com.marlonmafra.coronavirustrackingapp
 import android.app.Application
 import com.marlonmafra.coronavirustrackingapp.di.ApplicationComponent
 import com.marlonmafra.coronavirustrackingapp.di.DaggerApplicationComponent
+import com.marlonmafra.coronavirustrackingapp.di.DataModule
 import com.marlonmafra.coronavirustrackingapp.di.NetworkModule
 
 class CoronaTrackingApplication : Application() {
@@ -19,6 +20,7 @@ class CoronaTrackingApplication : Application() {
     private fun setupDagger() {
         appComponent = DaggerApplicationComponent.builder()
             .networkModule(NetworkModule("https://coronavirus-tracker-api.herokuapp.com/v2/"))
+            .dataModule(DataModule())
             .build()
     }
 }

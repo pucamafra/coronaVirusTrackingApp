@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="OverviewViewLabelTextStyle" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/rubik_medium</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="OverviewViewValueTextStyle" parent="TextAppearance.AppCompat">
+        <item name="fontFamily">@font/rubik_medium</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
 </resources>

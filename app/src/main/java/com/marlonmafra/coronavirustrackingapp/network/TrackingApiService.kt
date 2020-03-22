@@ -1,11 +1,10 @@
 package com.marlonmafra.coronavirustrackingapp.network
 
 import io.reactivex.Single
-import retrofit2.http.Body
-import retrofit2.http.POST
+import retrofit2.http.GET
 
 interface TrackingApiService {
-   /* // Change password
-    @POST("auth/changepassword")
-    fun changePassword(@Body changePasswordRequest: ChangePasswordRequest?): Single<ChangePasswordResponse?>?*/
+
+    @GET("locations")
+    fun getTrackingLocations(): Single<TrackingResponse>
 }
