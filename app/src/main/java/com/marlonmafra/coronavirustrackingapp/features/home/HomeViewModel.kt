@@ -1,4 +1,4 @@
-package com.marlonmafra.coronavirustrackingapp.feafures.home
+package com.marlonmafra.coronavirustrackingapp.features.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

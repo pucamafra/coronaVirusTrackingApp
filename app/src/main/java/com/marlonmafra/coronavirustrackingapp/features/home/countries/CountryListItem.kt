@@ -1,4 +1,4 @@
-package com.marlonmafra.coronavirustrackingapp.feafures.home.countries
+package com.marlonmafra.coronavirustrackingapp.features.home.countries
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView

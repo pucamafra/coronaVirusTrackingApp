@@ -1,4 +1,4 @@
-package com.marlonmafra.coronavirustrackingapp.feafures.home.overview
+package com.marlonmafra.coronavirustrackingapp.features.home.overview
 
 import android.content.Context
 import android.os.Bundle
@@ -11,7 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.extensions.format
-import com.marlonmafra.coronavirustrackingapp.feafures.home.HomeViewModel
+import com.marlonmafra.coronavirustrackingapp.features.home.HomeViewModel
 import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
 import kotlinx.android.synthetic.main.fragment_overview.globalConfirmedView
 import kotlinx.android.synthetic.main.fragment_overview.globalDeadView

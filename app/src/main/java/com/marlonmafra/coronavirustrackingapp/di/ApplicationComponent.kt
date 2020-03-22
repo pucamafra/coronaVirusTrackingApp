@@ -1,6 +1,6 @@
 package com.marlonmafra.coronavirustrackingapp.di
 
-import com.marlonmafra.coronavirustrackingapp.feafures.home.MainActivity
+import com.marlonmafra.coronavirustrackingapp.features.home.MainActivity
 import dagger.Component
 import javax.inject.Singleton
 

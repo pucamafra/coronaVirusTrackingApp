@@ -1,4 +1,4 @@
-package com.marlonmafra.coronavirustrackingapp.feafures.home.countries
+package com.marlonmafra.coronavirustrackingapp.features.home.countries
 
 import android.os.Bundle
 import android.text.Editable
@@ -7,14 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marlonmafra.coronavirustrackingapp.R
-import com.marlonmafra.coronavirustrackingapp.feafures.home.HomeViewModel
+import com.marlonmafra.coronavirustrackingapp.features.home.HomeViewModel
 import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem

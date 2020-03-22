@@ -1,4 +1,4 @@
-package com.marlonmafra.coronavirustrackingapp.feafures.home
+package com.marlonmafra.coronavirustrackingapp.features.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -8,8 +8,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.marlonmafra.coronavirustrackingapp.CoronaTrackingApplication
 import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.extensions.formatTo
-import com.marlonmafra.coronavirustrackingapp.feafures.home.countries.CountriesFragment
-import com.marlonmafra.coronavirustrackingapp.feafures.home.overview.OverviewFragment
+import com.marlonmafra.coronavirustrackingapp.features.home.countries.CountriesFragment
+import com.marlonmafra.coronavirustrackingapp.features.home.overview.OverviewFragment
 import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
 import kotlinx.android.synthetic.main.activity_main.latestUpdateValue
 import kotlinx.android.synthetic.main.activity_main.segmentedTab
