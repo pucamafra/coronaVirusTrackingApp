@@ -6,4 +6,14 @@
         <attr name="labelTextColor" format="color|reference" />
         <attr name="valueTextColor" format="color|reference" />
     </declare-styleable>
+
+    <declare-styleable name="SegmentedTab">
+        <attr name="tabSelectedColor" format="color" />
+        <attr name="tabUnselectedColor" format="color" />
+        <attr name="titleColor" format="color" />
+        <attr name="titleTextSize" format="integer|dimension" />
+        <attr name="titleFontPath" format="reference" />
+        <attr name="borderColorUnselected" format="color" />
+        <attr name="borderColorSelected" format="color" />
+    </declare-styleable>
 </resources>

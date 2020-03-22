@@ -46,45 +46,26 @@
             app:layout_constraintTop_toBottomOf="@+id/latestUpdateLabel"
             tools:text="Mar 15th" />
 
-        <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
-            android:id="@+id/confirmedView"
+        <com.marlonmafra.coronavirustrackingapp.segmentedTab.SegmentedTab
+            android:id="@+id/segmentedTab"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
-            app:label="@string/confirmed"
-            app:labelTextColor="@color/slate_grey_100"
-            app:layout_constraintEnd_toStartOf="@+id/deadView"
+            android:layout_height="60dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/latestUpdateValue"
-            app:valueTextColor="@color/white"
-            tools:value="222.333" />
+            app:tabSelectedColor="@color/white"
+            app:tabUnselectedColor="@color/home_background"
+            app:titleFontPath="@font/rubik_regular" />
 
-        <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
-            android:id="@+id/deadView"
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/viewPager"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:label="@string/dead"
-            app:labelTextColor="@color/slate_grey_100"
-            app:layout_constraintEnd_toStartOf="@+id/recoveredView"
-            app:layout_constraintStart_toEndOf="@+id/confirmedView"
-            app:layout_constraintTop_toTopOf="@+id/confirmedView"
-            app:valueTextColor="@color/red"
-            tools:value="222.333" />
-
-        <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
-            android:id="@+id/recoveredView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            app:label="@string/recovered"
-            app:labelTextColor="@color/slate_grey_100"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/deadView"
-            app:layout_constraintTop_toTopOf="@+id/confirmedView"
-            app:valueTextColor="@color/green"
-            tools:value="222.333" />
-
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/segmentedTab" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

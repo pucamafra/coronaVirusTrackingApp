@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/home_background">
+
+    <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
+        android:id="@+id/confirmedView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        app:label="@string/confirmed"
+        app:labelTextColor="@color/slate_grey_100"
+        app:layout_constraintEnd_toStartOf="@+id/deadView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:valueTextColor="@color/white"
+        tools:value="222.333" />
+
+    <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
+        android:id="@+id/deadView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:label="@string/dead"
+        app:labelTextColor="@color/slate_grey_100"
+        app:layout_constraintEnd_toStartOf="@+id/recoveredView"
+        app:layout_constraintStart_toEndOf="@+id/confirmedView"
+        app:layout_constraintTop_toTopOf="@+id/confirmedView"
+        app:valueTextColor="@color/red"
+        tools:value="222.333" />
+
+    <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
+        android:id="@+id/recoveredView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:label="@string/recovered"
+        app:labelTextColor="@color/slate_grey_100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/deadView"
+        app:layout_constraintTop_toTopOf="@+id/confirmedView"
+        app:valueTextColor="@color/green"
+        tools:value="222.333" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
