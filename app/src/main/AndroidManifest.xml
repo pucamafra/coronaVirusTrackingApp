@@ -12,12 +12,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/Theme.Corona.Tracking">
         <activity android:name=".features.details.CountryDetails" />
         <activity android:name=".features.home.MainActivity" />
         <activity
             android:name=".features.splash.SplashActivity"
-            android:theme="@style/Theme.MarvelApp.FullScreen">
+            android:theme="@style/Theme.Corona.Tracking.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
