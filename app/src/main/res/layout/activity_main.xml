@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/swipeRefreshLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/home_background">
+    android:background="@color/screen_background_color">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,30 +21,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/latestUpdateLabel"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/rubik_italic"
-            android:text="@string/last_update"
-            android:textColor="@color/white"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/logo" />
-
-        <TextView
-            android:id="@+id/latestUpdateValue"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/rubik_medium"
-            android:textAllCaps="true"
-            android:textColor="@color/slate_grey_100"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/latestUpdateLabel"
-            tools:text="Mar 15th" />
-
         <com.marlonmafra.coronavirustrackingapp.segmentedTab.SegmentedTab
             android:id="@+id/segmentedTab"
             android:layout_width="0dp"
@@ -53,9 +28,9 @@
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/latestUpdateValue"
-            app:tabSelectedColor="@color/white"
-            app:tabUnselectedColor="@color/home_background"
+            app:layout_constraintTop_toBottomOf="@+id/logo"
+            app:tabSelectedColor="@color/tab_selected_background_color"
+            app:tabUnselectedColor="@color/tab_unselected_background_color"
             app:titleFontPath="@font/rubik_regular" />
 
         <androidx.viewpager.widget.ViewPager

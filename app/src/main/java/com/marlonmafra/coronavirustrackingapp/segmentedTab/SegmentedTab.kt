@@ -81,7 +81,7 @@ class SegmentedTab : TabLayout {
         disablePadding("tabPaddingEnd")
     }
 
-    fun setup(titles: List<String>) {
+    fun setup(titles: List<Int>) {
         require(titles.size > 1) { "You need at least two tabs" }
         for (i in 0 until tabCount) {
             val tab = getTabAt(i)
@@ -105,7 +105,7 @@ class SegmentedTab : TabLayout {
         )
     }
 
-    private fun getTabView(position: Int, titles: List<String>): View {
+    private fun getTabView(position: Int, titles: List<Int>): View {
         val tab: com.marlonmafra.coronavirustrackingapp.segmentedTab.TabView
         when (position) {
             0 -> {

@@ -4,18 +4,34 @@
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
 
-    <color name="red">#FFE71742</color>
+    <color name="blue">#2274A5</color>
+    <color name="red">#E71742</color>
+    <color name="red2">#A20021</color>
+    <color name="green">#659B5E</color>
+    <color name="green2">#32936F</color>
+    <color name="yellow">#F7F052</color>
+    <color name="orange">#E67F0D</color>
+    <color name="black">#000000</color>
     <color name="white">@android:color/white</color>
     <color name="abc">@android:color/white</color>
     <color name="dark_red">#d0021b</color>
-
-    <color name="home_background">#22282B</color>
-    <color name="country_divider_color">#44FFFFFF</color>
-    <color name="green">#1B5E20</color>
-
     <color name="slate_grey_100">#FF5D657B</color>
     <color name="slate_grey_50">#805D657B</color>
     <color name="slate_grey_30">#485D657B</color>
     <color name="slate_grey_20">#325D657B</color>
     <color name="slate_grey_10">#1A5D657B</color>
+
+    <color name="home_background">#ffffff</color>
+    <color name="last_update_label_color">@color/slate_grey_100</color>
+    <color name="last_update_value_color">@color/slate_grey_100</color>
+    <color name="country_divider_color">@color/slate_grey_50</color>
+    <color name="screen_background_color">@color/white</color>
+    <color name="tab_selected_background_color">@color/colorPrimary</color>
+    <color name="tab_unselected_background_color">@color/white</color>
+    <color name="tab_selected_text_color">@color/colorPrimary</color>
+    <color name="tab_unselected_text_color">@color/white</color>
+    <color name="country_name_label_text_color">@color/slate_grey_100</color>
+    <color name="country_name_list_item_text_color">@color/slate_grey_100</color>
+    <color name="confirmed_value_list_item_text_color">@color/slate_grey_100</color>
+    <color name="chart_outside_legend_text_color">@color/black</color>
 </resources>

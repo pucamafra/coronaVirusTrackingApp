@@ -13,13 +13,12 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.marlonmafra.coronavirustrackingapp.R
+import com.marlonmafra.coronavirustrackingapp.features.details.CountryDetails
 import com.marlonmafra.coronavirustrackingapp.features.home.HomeViewModel
-import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import kotlinx.android.synthetic.main.fragment_countries.countryList
 import kotlinx.android.synthetic.main.fragment_countries.searchEditText
-import java.util.ArrayList
 
 class CountriesFragment : Fragment() {
 
@@ -28,7 +27,8 @@ class CountriesFragment : Fragment() {
     }
 
     private val homeViewModel: HomeViewModel by activityViewModels()
-    private lateinit var adapter: FlexibleAdapter<AbstractFlexibleItem<*>>
+    private val adapter: FlexibleAdapter<AbstractFlexibleItem<*>> =
+        FlexibleAdapter(ArrayList<AbstractFlexibleItem<*>>())
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,34 +37,36 @@ class CountriesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeViewModel.locations.observe(requireActivity(), Observer { response ->
-            setupLayout(response)
+        setupLayout()
+        homeViewModel.countryList.observe(requireActivity(), Observer {
+            adapter.updateDataSet(it)
+            applySearchIFHas()
         })
 
-        adapter = FlexibleAdapter(ArrayList<AbstractFlexibleItem<*>>())
-        adapter.isAnimateChangesWithDiffUtil = true
-        countryList.adapter = adapter
-        val layoutManager = LinearLayoutManager(context)
-        countryList.layoutManager = layoutManager
-        val dividerItemDecoration = DividerItemDecoration(activity, layoutManager.orientation)
-        dividerItemDecoration.setDrawable(
-            ContextCompat.getDrawable(
-                requireContext(),
-                R.drawable.country_divider
-            )!!
-        )
-        countryList.addItemDecoration(dividerItemDecoration)
+        homeViewModel.selectedLocation.observe(requireActivity(), Observer {
+            startActivity(CountryDetails.newInstance(requireContext(), it))
+            requireActivity().overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out)
+        })
     }
 
-    private fun setupLayout(response: TrackingResponse) = with(response) {
-        val items = mutableListOf<AbstractFlexibleItem<*>>()
-        adapter.clear()
-        response.locations.forEach {
-            items.add(CountryListItem(it))
-        }
-        adapter.updateDataSet(items)
+    private fun setupLayout() {
+        adapter.isAnimateChangesWithDiffUtil = true
+        countryList.adapter = adapter
 
+        val layoutManager = LinearLayoutManager(context)
+        countryList.layoutManager = layoutManager
+
+        ContextCompat.getDrawable(requireContext(), R.drawable.country_divider)?.let {
+            val itemDecoration = DividerItemDecoration(activity, layoutManager.orientation)
+            countryList.addItemDecoration(itemDecoration)
+        }
         searchEditText.addTextChangedListener(textWatcher())
+    }
+
+    private fun applySearchIFHas() {
+        if (searchEditText.text.isNullOrEmpty().not()) {
+            searchTermEntered(searchEditText.text.toString())
+        }
     }
 
     private fun textWatcher(): TextWatcher {

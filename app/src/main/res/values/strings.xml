@@ -2,6 +2,10 @@
     <string name="app_name">Corona Virus Tracking App</string>
     <string name="label">Label</string>
     <string name="value">Value</string>
+    <string name="overview">Overview</string>
+    <string name="countries">Countries</string>
+    <string name="pie_chart">Pie chart</string>
+    <string name="line_chart">Line chart</string>
     <string name="confirmed">Confirmed</string>
     <string name="dead">Dead</string>
     <string name="recovered">Recovered</string>

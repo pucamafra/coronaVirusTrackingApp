@@ -14,7 +14,7 @@ open abstract class TabView(
     private val context: Context,
     layout: Int
 ) {
-    private val radius = 3
+    private val radius = 5
     private val strokeSize = 1
     val view: View = View.inflate(context, layout, null)
     private val txtTitle: TextView
@@ -43,6 +43,10 @@ open abstract class TabView(
 
     fun setTitle(title: String?) {
         txtTitle.text = title
+    }
+
+    fun setTitle(title: Int) {
+        txtTitle.setText(title)
     }
 
     fun setTextSize(size: Float) {

@@ -1,6 +1,7 @@
 package com.marlonmafra.coronavirustrackingapp.features.home.countries
 
 import android.view.View
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import com.blongho.country_data.World
 import com.marlonmafra.coronavirustrackingapp.R
@@ -17,7 +18,8 @@ import kotlinx.android.synthetic.main.country_list_item.countryName
 import kotlinx.android.synthetic.main.country_list_item.flag
 
 class CountryListItem(
-    private val location: Location
+    val location: Location,
+    val selectedLocation: MutableLiveData<Location>
 ) : AbstractFlexibleItem<CountryListItem.ViewHolder>(), IFilterable<String> {
 
     override fun equals(other: Any?): Boolean = when (other) {
@@ -47,6 +49,9 @@ class CountryListItem(
         FlexibleViewHolder(containerView, adapter), LayoutContainer {
 
         fun bind(location: Location) {
+            containerView.setOnClickListener {
+                selectedLocation.value = location
+            }
             when {
                 location.province.isEmpty() -> countryName.text = location.country
                 else -> countryName.text = "${location.country}/${location.province}"

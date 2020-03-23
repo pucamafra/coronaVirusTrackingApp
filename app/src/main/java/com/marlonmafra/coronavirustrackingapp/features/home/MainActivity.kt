@@ -7,11 +7,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.marlonmafra.coronavirustrackingapp.CoronaTrackingApplication
 import com.marlonmafra.coronavirustrackingapp.R
-import com.marlonmafra.coronavirustrackingapp.extensions.formatTo
 import com.marlonmafra.coronavirustrackingapp.features.home.countries.CountriesFragment
 import com.marlonmafra.coronavirustrackingapp.features.home.overview.OverviewFragment
-import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
-import kotlinx.android.synthetic.main.activity_main.latestUpdateValue
 import kotlinx.android.synthetic.main.activity_main.segmentedTab
 import kotlinx.android.synthetic.main.activity_main.swipeRefreshLayout
 import kotlinx.android.synthetic.main.activity_main.viewPager
@@ -32,11 +29,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         CoronaTrackingApplication.appComponent.inject(this)
-
-
         homeViewModel.load()
         homeViewModel.locations.observe(this, Observer { response ->
-            setupLayout(response)
             swipeRefreshLayout.isRefreshing = false
         })
         swipeRefreshLayout.setOnRefreshListener { homeViewModel.load() }
@@ -45,9 +39,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun setup() {
         val fragmentList: MutableList<Fragment> = ArrayList()
-        val titles: MutableList<String> = ArrayList()
-        titles.add("Overview")
-        titles.add("Countries")
+        val titles: MutableList<Int> = ArrayList()
+        titles.add(R.string.overview)
+        titles.add(R.string.countries)
 
         fragmentList.add(OverviewFragment.newInstance())
         fragmentList.add(CountriesFragment.newInstance())
@@ -56,9 +50,5 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = this.subTabAdapter
         segmentedTab.setupWithViewPager(viewPager)
         segmentedTab.setup(titles)
-    }
-
-    private fun setupLayout(response: TrackingResponse) = with(response) {
-        latestUpdateValue.text = System.currentTimeMillis().formatTo("MMM dd, HH:mm a")
     }
 }

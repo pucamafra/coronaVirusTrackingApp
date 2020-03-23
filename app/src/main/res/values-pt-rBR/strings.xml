@@ -1,4 +1,8 @@
 <resources>
+    <string name="overview">Geral</string>
+    <string name="countries">Países</string>
+    <string name="pie_chart">Gráfico Pizza</string>
+    <string name="line_chart">Gráfico Linha</string>
     <string name="confirmed">Confirmados</string>
     <string name="dead">Mortos</string>
     <string name="recovered">Recuperados</string>

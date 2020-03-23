@@ -5,6 +5,6 @@ import retrofit2.http.GET
 
 interface TrackingApiService {
 
-    @GET("locations")
+    @GET("locations?timelines=1")
     fun getTrackingLocations(): Single<TrackingResponse>
 }

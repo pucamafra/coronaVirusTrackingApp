@@ -4,17 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:background="@color/home_background">
+    tools:background="@color/screen_background_color">
 
     <TextView
         android:id="@+id/globalLabel"
+        style="@style/OverviewTitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
         android:text="Global"
-        android:textColor="@color/red"
-        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,7 +28,7 @@
         app:layout_constraintEnd_toStartOf="@+id/globalDeadView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/globalLabel"
-        app:valueTextColor="@color/white"
+        app:valueTextColor="@color/orange"
         tools:value="222.333" />
 
     <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
@@ -59,12 +58,11 @@
 
     <TextView
         android:id="@+id/yourLocationLabel"
+        style="@style/OverviewTitleTextStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="40dp"
-        android:textColor="@color/red"
-        android:textSize="21sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/globalConfirmedView"
         tools:text="Your Location" />
@@ -80,7 +78,7 @@
         app:layout_constraintEnd_toStartOf="@+id/localDeadView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/yourLocationLabel"
-        app:valueTextColor="@color/white"
+        app:valueTextColor="@color/orange"
         tools:value="222.333" />
 
     <com.marlonmafra.coronavirustrackingapp.ui.OverviewView
