@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Corona Virus Tracking</string>
+    <string name="app_name">Coronavirus Tracking App</string>
     <string name="label" translatable="false">Label</string>
     <string name="value" translatable="false">Value</string>
     <string name="overview">Overview</string>
