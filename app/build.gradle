@@ -49,6 +49,7 @@ dependencies {
     def rxAndroidVersion = "2.1.1"
     def flexibleAdapterVersion = "5.1.0"
     def flexibleAdapterUIVersion = "1.0.0-b5"
+    def room_version = "1.1.0"
 
     implementation "eu.davidea:flexible-adapter:$flexibleAdapterVersion"
     implementation "eu.davidea:flexible-adapter-ui:$flexibleAdapterUIVersion"
@@ -82,6 +83,9 @@ dependencies {
 
     implementation "com.github.blongho:worldCountryData:1.4"
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+    implementation "android.arch.persistence.room:runtime:$room_version"
+    kapt "android.arch.persistence.room:compiler:$room_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'

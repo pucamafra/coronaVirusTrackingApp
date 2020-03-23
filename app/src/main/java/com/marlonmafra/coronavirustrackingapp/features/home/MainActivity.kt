@@ -1,5 +1,7 @@
 package com.marlonmafra.coronavirustrackingapp.features.home
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -9,12 +11,28 @@ import com.marlonmafra.coronavirustrackingapp.CoronaTrackingApplication
 import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.features.home.countries.CountriesFragment
 import com.marlonmafra.coronavirustrackingapp.features.home.overview.OverviewFragment
+import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
 import kotlinx.android.synthetic.main.activity_main.segmentedTab
 import kotlinx.android.synthetic.main.activity_main.swipeRefreshLayout
 import kotlinx.android.synthetic.main.activity_main.viewPager
 import javax.inject.Inject
 
+const val TRACKING_DATA = "TRACKING_DATA"
+
 class MainActivity : AppCompatActivity() {
+
+    companion object {
+        fun newInstance(context: Context, trackingResponse: TrackingResponse) =
+            Intent(context, MainActivity::class.java).apply {
+                putExtra(TRACKING_DATA, trackingResponse)
+            }
+    }
+
+    private val trackingResponse: TrackingResponse by lazy {
+        intent.extras?.getSerializable(
+            TRACKING_DATA
+        ) as TrackingResponse
+    }
 
     @Inject
     lateinit var factory: HomeViewModelFactory
@@ -29,12 +47,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         CoronaTrackingApplication.appComponent.inject(this)
-        homeViewModel.load()
-        homeViewModel.locations.observe(this, Observer { response ->
-            swipeRefreshLayout.isRefreshing = false
-        })
         swipeRefreshLayout.setOnRefreshListener { homeViewModel.load() }
         setup()
+        bindObservables()
+    }
+
+    private fun bindObservables() {
+        homeViewModel.handleResponse(trackingResponse)
+        homeViewModel.progressBar.observe(this, Observer {
+            swipeRefreshLayout.isRefreshing = it
+        })
     }
 
     private fun setup() {

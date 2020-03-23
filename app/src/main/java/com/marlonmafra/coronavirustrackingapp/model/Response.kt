@@ -4,17 +4,6 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 import java.util.Date
 
-data class Latest(
-    val confirmed: Long,
-    val deaths: Long,
-    val recovered: Long
-) : Serializable
-
-data class Coordinate(
-    val latitude: String,
-    val longitude: String
-) : Serializable
-
 data class Location(
     val coordinates: Coordinate,
     val country: String,
@@ -30,6 +19,17 @@ data class Timeline(
     val confirmed: Situation,
     val deaths: Situation,
     val recovered: Situation
+) : Serializable
+
+data class Latest(
+    val confirmed: Long,
+    val deaths: Long,
+    val recovered: Long
+) : Serializable
+
+data class Coordinate(
+    val latitude: String,
+    val longitude: String
 ) : Serializable
 
 data class Situation(

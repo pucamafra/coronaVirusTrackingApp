@@ -11,6 +11,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.extensions.format
+import com.marlonmafra.coronavirustrackingapp.extensions.formatCountryName
 import com.marlonmafra.coronavirustrackingapp.features.home.HomeViewModel
 import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
 import kotlinx.android.synthetic.main.fragment_overview.globalConfirmedView
@@ -53,11 +54,7 @@ class OverviewFragment : Fragment() {
 
         val countryCodeValue = telephonyManager.networkCountryIso
         response.locations.find { it.countryCode.equals(countryCodeValue, true) }?.let {
-            yourLocationLabel.text = when {
-                it.province.isEmpty() -> it.country
-                else -> "${it.country}/${it.province}"
-            }
-
+            yourLocationLabel.text = it.formatCountryName()
             localConfirmedView.setValue(it.latest.confirmed.format())
             localDeadView.setValue(it.latest.deaths.format())
             localRecoveredView.setValue(it.latest.recovered.format())

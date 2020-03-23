@@ -6,21 +6,27 @@ import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.blongho.country_data.World
+import com.marlonmafra.coronavirustrackingapp.CoronaTrackingApplication
 import com.marlonmafra.coronavirustrackingapp.R
+import com.marlonmafra.coronavirustrackingapp.extensions.changeVisibility
 import com.marlonmafra.coronavirustrackingapp.extensions.format
+import com.marlonmafra.coronavirustrackingapp.extensions.formatCountryName
 import com.marlonmafra.coronavirustrackingapp.extensions.formatTo
 import com.marlonmafra.coronavirustrackingapp.features.home.SubTabAdapter
 import com.marlonmafra.coronavirustrackingapp.model.Location
 import kotlinx.android.synthetic.main.activity_country_details.countryName
 import kotlinx.android.synthetic.main.activity_country_details.flag
 import kotlinx.android.synthetic.main.activity_country_details.latestUpdateValue
-import kotlinx.android.synthetic.main.activity_country_details.scrollView
 import kotlinx.android.synthetic.main.activity_main.segmentedTab
 import kotlinx.android.synthetic.main.activity_main.viewPager
 import kotlinx.android.synthetic.main.fragment_overview.localConfirmedView
 import kotlinx.android.synthetic.main.fragment_overview.localDeadView
 import kotlinx.android.synthetic.main.fragment_overview.localRecoveredView
+import kotlinx.android.synthetic.main.loading_progress_bar.loadingProgressBar
+import javax.inject.Inject
 
 const val LOCATION_EXTRA = "location"
 
@@ -35,13 +41,30 @@ class CountryDetails : AppCompatActivity() {
             }
     }
 
+    @Inject
+    lateinit var factory: CountryDetailsViewModelFactory
+    private val countryDetailsViewModel: CountryDetailsViewModel by lazy {
+        ViewModelProvider(this, factory).get(
+            CountryDetailsViewModel::class.java
+        )
+    }
+
     private lateinit var subTabAdapter: SubTabAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_country_details)
+        CoronaTrackingApplication.appComponent.inject(this)
         setupLayout()
-        setup()
+        setupTabs()
+        bindObservables()
+        countryDetailsViewModel.loadTimeline(location.id)
+    }
+
+    private fun bindObservables() {
+        countryDetailsViewModel.progressBar.observe(this, Observer {
+            loadingProgressBar.changeVisibility(it)
+        })
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -57,27 +80,26 @@ class CountryDetails : AppCompatActivity() {
     private fun setupLayout() = with(location) {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         flag.setImageResource(World.getFlagOf(country))
-        countryName.text = country
+        countryName.text = formatCountryName()
         latestUpdateValue.text = lastUpdated.formatTo("MMM dd, HH:mm a")
         localConfirmedView.setValue(latest.confirmed.format())
         localDeadView.setValue(latest.deaths.format())
         localRecoveredView.setValue(latest.recovered.format())
     }
 
-    private fun setup() {
+    private fun setupTabs() {
         val fragmentList: MutableList<Fragment> = ArrayList()
         val titles: MutableList<Int> = ArrayList()
         titles.add(R.string.pie_chart)
         titles.add(R.string.line_chart)
 
-        fragmentList.add(PieChartFragment.newInstance(location))
-        fragmentList.add(LineChartFragment.newInstance(location))
+        fragmentList.add(PieChartFragment.newInstance())
+        fragmentList.add(LineChartFragment.newInstance())
 
         subTabAdapter = SubTabAdapter(supportFragmentManager, fragmentList)
         viewPager.adapter = subTabAdapter
         segmentedTab.setupWithViewPager(viewPager)
         segmentedTab.setup(titles)
-        scrollView.isFillViewport = true
     }
 
     private fun finishAndSlideRight() {

@@ -20,6 +20,7 @@
     <color name="slate_grey_30">#485D657B</color>
     <color name="slate_grey_20">#325D657B</color>
     <color name="slate_grey_10">#1A5D657B</color>
+    <color name="progress_background">#99000000</color>
 
     <color name="home_background">#ffffff</color>
     <color name="last_update_label_color">@color/slate_grey_100</color>

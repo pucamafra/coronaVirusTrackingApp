@@ -7,32 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.components.Legend
-import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.PieData
 import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
-import com.github.mikephil.charting.highlight.Highlight
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.model.Location
 import kotlinx.android.synthetic.main.fragment_pie_chart.chart
 
-const val PIE_CHART_LOCATION_EXTRA = "location"
-
 class PieChartFragment : Fragment() {
 
-    private val location: Location by lazy { arguments?.getSerializable(LOCATION_EXTRA) as Location }
-
     companion object {
-        fun newInstance(location: Location) = PieChartFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable(PIE_CHART_LOCATION_EXTRA, location)
-            }
-        }
+        fun newInstance() = PieChartFragment()
     }
+
+    private val countryDetailsViewModel: CountryDetailsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,7 +35,9 @@ class PieChartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupChart()
-        setData()
+        countryDetailsViewModel.location.observe(requireActivity(), Observer {
+            setData(it)
+        })
     }
 
     private fun setupChart() {
@@ -92,13 +87,13 @@ class PieChartFragment : Fragment() {
         chart.setEntryLabelTextSize(12f)
     }
 
-    private fun setData() {
+    private fun setData(location: Location) = with(location.latest) {
         val entries: ArrayList<PieEntry> = ArrayList()
-        entries.add(PieEntry(location.latest.confirmed.toFloat(), "Confirmed"))
-        entries.add(PieEntry(location.latest.deaths.toFloat(), "Death"))
-        entries.add(PieEntry(location.latest.recovered.toFloat(), "Recovered"))
+        entries.add(PieEntry(confirmed.toFloat(), getString(R.string.confirmed)))
+        entries.add(PieEntry(deaths.toFloat(), getString(R.string.dead)))
+        entries.add(PieEntry(recovered.toFloat(), getString(R.string.recovered)))
 
-        val dataSet = PieDataSet(entries, "Election Results")
+        val dataSet = PieDataSet(entries, "")
         dataSet.sliceSpace = 3f
         dataSet.valueLinePart1OffsetPercentage = 80f
         dataSet.valueLinePart1Length = 0.2f
@@ -107,10 +102,9 @@ class PieChartFragment : Fragment() {
         val data = PieData(dataSet)
 
         dataSet.yValuePosition = PieDataSet.ValuePosition.OUTSIDE_SLICE
-        val colorFirst = context?.let { ContextCompat.getColor(it, R.color.orange) }
-        val colorSecond = context?.let { ContextCompat.getColor(it, R.color.red) }
-        val colorThird = context?.let { ContextCompat.getColor(it, R.color.green) }
-
+        val colorFirst = ContextCompat.getColor(requireContext(), R.color.orange)
+        val colorSecond = ContextCompat.getColor(requireContext(), R.color.red)
+        val colorThird = ContextCompat.getColor(requireContext(), R.color.green)
         dataSet.colors = mutableListOf(colorFirst, colorSecond, colorThird)
 
         data.setValueFormatter(PercentFormatter(chart))

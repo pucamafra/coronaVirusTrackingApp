@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.blongho.country_data.World
 import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.extensions.format
+import com.marlonmafra.coronavirustrackingapp.extensions.formatCountryName
 import com.marlonmafra.coronavirustrackingapp.model.Location
 import eu.davidea.flexibleadapter.FlexibleAdapter
 import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
@@ -52,11 +53,9 @@ class CountryListItem(
             containerView.setOnClickListener {
                 selectedLocation.value = location
             }
-            when {
-                location.province.isEmpty() -> countryName.text = location.country
-                else -> countryName.text = "${location.country}/${location.province}"
-            }
 
+
+            countryName.text = location.formatCountryName()
             confirmedNumber.text = location.latest.confirmed.format()
             flag.setImageResource(World.getFlagOf(location.countryCode))
         }

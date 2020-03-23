@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.Legend.LegendForm
 import com.github.mikephil.charting.components.XAxis
@@ -15,28 +17,18 @@ import com.github.mikephil.charting.components.XAxis.XAxisPosition
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
-import com.github.mikephil.charting.formatter.ValueFormatter
-import com.github.mikephil.charting.highlight.Highlight
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
-import com.github.mikephil.charting.listener.OnChartValueSelectedListener
 import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.model.Location
 import com.marlonmafra.coronavirustrackingapp.model.Situation
 import kotlinx.android.synthetic.main.fragment_line_chart.chart
 
-const val LINE_CHART_LOCATION_EXTRA = "location"
-
 class LineChartFragment : Fragment() {
-
-    private val location: Location by lazy { arguments?.getSerializable(LINE_CHART_LOCATION_EXTRA) as Location }
-
     companion object {
-        fun newInstance(location: Location) = LineChartFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable(LINE_CHART_LOCATION_EXTRA, location)
-            }
-        }
+        fun newInstance() = LineChartFragment()
     }
+
+    private val countryDetailsViewModel: CountryDetailsViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,7 +38,9 @@ class LineChartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupChart()
-        setData()
+        countryDetailsViewModel.location.observe(requireActivity(), Observer {
+            setData(it)
+        })
     }
 
     private fun setupChart() {
@@ -61,12 +55,14 @@ class LineChartFragment : Fragment() {
         chart.setBackgroundColor(Color.WHITE)
         chart.animateX(1500)
 
-        val l = chart.legend
-        l.form = LegendForm.CIRCLE
-        l.verticalAlignment = Legend.LegendVerticalAlignment.TOP
-        l.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
-        l.orientation = Legend.LegendOrientation.HORIZONTAL
-        l.setDrawInside(false)
+        val legend = chart.legend
+        legend.form = LegendForm.CIRCLE
+        legend.verticalAlignment = Legend.LegendVerticalAlignment.TOP
+        legend.horizontalAlignment = Legend.LegendHorizontalAlignment.LEFT
+        legend.orientation = Legend.LegendOrientation.HORIZONTAL
+        legend.setDrawInside(false)
+        legend.yOffset = 10f
+        legend.xOffset = 5f
 
         val xAxis: XAxis = chart.xAxis
         xAxis.position = XAxisPosition.BOTTOM
@@ -75,10 +71,10 @@ class LineChartFragment : Fragment() {
         xAxis.labelRotationAngle = -50f
         xAxis.valueFormatter = TimelineValueFormatter()
         xAxis.setDrawGridLines(true)
-        xAxis.setLabelCount(15,true)
+        xAxis.setLabelCount(15, true)
     }
 
-    private fun setData() = with(location.timelines) {
+    private fun setData(location: Location) = with(location.timelines) {
         val dataSets: ArrayList<ILineDataSet> = ArrayList()
         dataSets.add(
             setupData(
@@ -109,10 +105,8 @@ class LineChartFragment : Fragment() {
 
     private fun setupData(situation: Situation, color: Int, label: Int): LineDataSet {
         val labelString = getString(label)
-        println("Label: $labelString")
         val entries: ArrayList<Entry> = ArrayList()
         for ((key, value) in situation.timeline) {
-            println("Key: ${key.time} , Value:${value.toFloat()}")
             entries.add(
                 Entry(
                     key.time.toFloat(),
