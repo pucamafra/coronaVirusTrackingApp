@@ -21,7 +21,7 @@ class CoronaTrackingApplication : Application() {
 
     private fun setupDagger() {
         appComponent = DaggerApplicationComponent.builder()
-            .networkModule(NetworkModule("https://coronavirus-tracker-api.herokuapp.com/v2/"))
+            .networkModule(NetworkModule(getString(R.string.base_url)))
             .dataModule(DataModule())
             .build()
     }
