@@ -10,7 +10,7 @@ import android.view.View
 import android.widget.TextView
 import com.marlonmafra.coronavirustrackingapp.R
 
-open abstract class TabView(
+abstract class TabView(
     private val context: Context,
     layout: Int
 ) {
