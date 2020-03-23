@@ -1,4 +1,4 @@
-package com.marlonmafra.coronavirustrackingapp.features.details
+package com.marlonmafra.coronavirustrackingapp.features.details.linechart
 
 import android.graphics.Color
 import android.graphics.DashPathEffect
@@ -19,13 +19,15 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet
 import com.marlonmafra.coronavirustrackingapp.R
+import com.marlonmafra.coronavirustrackingapp.features.details.CountryDetailsViewModel
 import com.marlonmafra.coronavirustrackingapp.model.Location
 import com.marlonmafra.coronavirustrackingapp.model.Situation
 import kotlinx.android.synthetic.main.fragment_line_chart.chart
 
 class LineChartFragment : Fragment() {
     companion object {
-        fun newInstance() = LineChartFragment()
+        fun newInstance() =
+            LineChartFragment()
     }
 
     private val countryDetailsViewModel: CountryDetailsViewModel by activityViewModels()
@@ -69,7 +71,8 @@ class LineChartFragment : Fragment() {
         xAxis.setDrawGridLines(true)
         xAxis.setDrawAxisLine(true)
         xAxis.labelRotationAngle = -50f
-        xAxis.valueFormatter = TimelineValueFormatter()
+        xAxis.valueFormatter =
+            TimelineValueFormatter()
         xAxis.setDrawGridLines(true)
         xAxis.setLabelCount(15, true)
     }

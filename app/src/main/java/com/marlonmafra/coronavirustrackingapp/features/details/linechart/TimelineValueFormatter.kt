@@ -1,4 +1,4 @@
-package com.marlonmafra.coronavirustrackingapp.features.details
+package com.marlonmafra.coronavirustrackingapp.features.details.linechart
 
 import com.github.mikephil.charting.components.AxisBase
 import com.github.mikephil.charting.data.BarEntry

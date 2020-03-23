@@ -16,6 +16,7 @@ class HomeViewModel(
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
+    val error: MutableLiveData<Unit> by lazy { MutableLiveData<Unit>() }
     val progressBar: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
     val locations: MutableLiveData<TrackingResponse> by lazy { MutableLiveData<TrackingResponse>() }
     val countryList: MutableLiveData<List<AbstractFlexibleItem<*>>> by lazy { MutableLiveData<List<AbstractFlexibleItem<*>>>() }
@@ -29,7 +30,7 @@ class HomeViewModel(
                 .doOnSubscribe { progressBar.value = true }
                 .doFinally { progressBar.value = false }
                 .subscribe({ handleResponse(it) }, {
-                    println()
+                    error.value = Unit
                 })
         )
     }

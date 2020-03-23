@@ -1,4 +1,4 @@
-package com.marlonmafra.coronavirustrackingapp.features.details
+package com.marlonmafra.coronavirustrackingapp.features.details.piechart
 
 import android.graphics.Color
 import android.os.Bundle
@@ -16,13 +16,15 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.formatter.PercentFormatter
 import com.marlonmafra.coronavirustrackingapp.R
+import com.marlonmafra.coronavirustrackingapp.features.details.CountryDetailsViewModel
 import com.marlonmafra.coronavirustrackingapp.model.Location
 import kotlinx.android.synthetic.main.fragment_pie_chart.chart
 
 class PieChartFragment : Fragment() {
 
     companion object {
-        fun newInstance() = PieChartFragment()
+        fun newInstance() =
+            PieChartFragment()
     }
 
     private val countryDetailsViewModel: CountryDetailsViewModel by activityViewModels()

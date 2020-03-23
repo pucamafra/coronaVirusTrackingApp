@@ -1,7 +1,7 @@
 <resources>
-    <string name="app_name">Corona Virus Tracking App</string>
-    <string name="label">Label</string>
-    <string name="value">Value</string>
+    <string name="app_name">Corona Virus Tracking</string>
+    <string name="label" translatable="false">Label</string>
+    <string name="value" translatable="false">Value</string>
     <string name="overview">Overview</string>
     <string name="countries">Countries</string>
     <string name="pie_chart">Pie chart</string>
@@ -12,4 +12,5 @@
     <string name="last_update">Last update</string>
     <string name="country">Country</string>
     <string name="country_search_hint">Search a country</string>
+    <string name="error_try_again">An error occurred, please try again.</string>
 </resources>

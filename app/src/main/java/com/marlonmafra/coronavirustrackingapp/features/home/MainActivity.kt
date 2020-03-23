@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.marlonmafra.coronavirustrackingapp.CoronaTrackingApplication
 import com.marlonmafra.coronavirustrackingapp.R
+import com.marlonmafra.coronavirustrackingapp.extensions.showSnackBar
 import com.marlonmafra.coronavirustrackingapp.features.home.countries.CountriesFragment
 import com.marlonmafra.coronavirustrackingapp.features.home.overview.OverviewFragment
 import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
@@ -47,7 +48,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         CoronaTrackingApplication.appComponent.inject(this)
-        swipeRefreshLayout.setOnRefreshListener { homeViewModel.load() }
         setup()
         bindObservables()
     }
@@ -57,6 +57,13 @@ class MainActivity : AppCompatActivity() {
         homeViewModel.progressBar.observe(this, Observer {
             swipeRefreshLayout.isRefreshing = it
         })
+        homeViewModel.error.observe(this, Observer {
+            showErrorMessage()
+        })
+    }
+
+    private fun showErrorMessage() {
+        showSnackBar(swipeRefreshLayout, R.string.error_try_again)
     }
 
     private fun setup() {
@@ -72,5 +79,10 @@ class MainActivity : AppCompatActivity() {
         viewPager.adapter = this.subTabAdapter
         segmentedTab.setupWithViewPager(viewPager)
         segmentedTab.setup(titles)
+
+        with(swipeRefreshLayout) {
+            setOnRefreshListener { homeViewModel.load() }
+            setColorSchemeColors(*resources.getIntArray(R.array.swipe_refresh_colors))
+        }
     }
 }

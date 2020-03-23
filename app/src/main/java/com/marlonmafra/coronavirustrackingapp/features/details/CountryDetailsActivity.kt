@@ -15,16 +15,20 @@ import com.marlonmafra.coronavirustrackingapp.extensions.changeVisibility
 import com.marlonmafra.coronavirustrackingapp.extensions.format
 import com.marlonmafra.coronavirustrackingapp.extensions.formatCountryName
 import com.marlonmafra.coronavirustrackingapp.extensions.formatTo
+import com.marlonmafra.coronavirustrackingapp.extensions.showSnackBar
+import com.marlonmafra.coronavirustrackingapp.features.details.linechart.LineChartFragment
+import com.marlonmafra.coronavirustrackingapp.features.details.piechart.PieChartFragment
 import com.marlonmafra.coronavirustrackingapp.features.home.SubTabAdapter
 import com.marlonmafra.coronavirustrackingapp.model.Location
 import kotlinx.android.synthetic.main.activity_country_details.countryName
 import kotlinx.android.synthetic.main.activity_country_details.flag
 import kotlinx.android.synthetic.main.activity_country_details.latestUpdateValue
-import kotlinx.android.synthetic.main.activity_main.segmentedTab
-import kotlinx.android.synthetic.main.activity_main.viewPager
-import kotlinx.android.synthetic.main.fragment_overview.localConfirmedView
-import kotlinx.android.synthetic.main.fragment_overview.localDeadView
-import kotlinx.android.synthetic.main.fragment_overview.localRecoveredView
+import kotlinx.android.synthetic.main.activity_country_details.localConfirmedView
+import kotlinx.android.synthetic.main.activity_country_details.localDeadView
+import kotlinx.android.synthetic.main.activity_country_details.localRecoveredView
+import kotlinx.android.synthetic.main.activity_country_details.rootLayout
+import kotlinx.android.synthetic.main.activity_country_details.segmentedTab
+import kotlinx.android.synthetic.main.activity_country_details.viewPager
 import kotlinx.android.synthetic.main.loading_progress_bar.loadingProgressBar
 import javax.inject.Inject
 
@@ -65,6 +69,12 @@ class CountryDetails : AppCompatActivity() {
         countryDetailsViewModel.progressBar.observe(this, Observer {
             loadingProgressBar.changeVisibility(it)
         })
+
+        countryDetailsViewModel.error.observe(this, Observer { showErrorMessage() })
+    }
+
+    private fun showErrorMessage() {
+        showSnackBar(rootLayout, R.string.error_try_again)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

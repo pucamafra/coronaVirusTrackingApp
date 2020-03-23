@@ -35,4 +35,10 @@
     <color name="country_name_list_item_text_color">@color/slate_grey_100</color>
     <color name="confirmed_value_list_item_text_color">@color/slate_grey_100</color>
     <color name="chart_outside_legend_text_color">@color/black</color>
+
+    <array name="swipe_refresh_colors">
+        <item>@color/colorPrimary</item>
+        <item>@color/colorPrimaryDark</item>
+        <item>@color/colorAccent</item>
+    </array>
 </resources>

@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">Corona Vírus Rastreamento</string>
     <string name="overview">Geral</string>
     <string name="countries">Países</string>
     <string name="pie_chart">Gráfico Pizza</string>
@@ -9,4 +10,5 @@
     <string name="last_update">Última atualização</string>
     <string name="country">Pais</string>
     <string name="country_search_hint">Busque um pais</string>
+    <string name="error_try_again">Ocorreu um erro, por favor tente de novo.</string>
 </resources>

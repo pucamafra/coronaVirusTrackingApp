@@ -14,6 +14,7 @@ class CountryDetailsViewModel(
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
+    val error: MutableLiveData<Unit> by lazy { MutableLiveData<Unit>() }
     val location: MutableLiveData<Location> by lazy { MutableLiveData<Location>() }
     val progressBar: MutableLiveData<Boolean> by lazy { MutableLiveData<Boolean>() }
 
@@ -25,7 +26,7 @@ class CountryDetailsViewModel(
                 .doOnSubscribe { progressBar.value = true }
                 .doFinally { progressBar.value = false }
                 .subscribe({ handleResponse(it) }, {
-                    println()
+                    error.value = Unit
                 })
         )
     }
