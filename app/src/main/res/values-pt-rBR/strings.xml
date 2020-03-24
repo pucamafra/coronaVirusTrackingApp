@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Corona Vírus Rastreamento</string>
+    <string name="app_name">Corona Vírus BR</string>
     <string name="overview">Geral</string>
     <string name="countries">Países</string>
     <string name="pie_chart">Gráfico Pizza</string>

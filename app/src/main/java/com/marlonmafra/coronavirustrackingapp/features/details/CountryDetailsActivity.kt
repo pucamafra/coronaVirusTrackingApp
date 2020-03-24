@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.blongho.country_data.World
+import com.google.android.gms.ads.AdRequest
 import com.marlonmafra.coronavirustrackingapp.CoronaTrackingApplication
 import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.extensions.changeVisibility
@@ -20,6 +21,7 @@ import com.marlonmafra.coronavirustrackingapp.features.details.linechart.LineCha
 import com.marlonmafra.coronavirustrackingapp.features.details.piechart.PieChartFragment
 import com.marlonmafra.coronavirustrackingapp.features.home.SubTabAdapter
 import com.marlonmafra.coronavirustrackingapp.model.Location
+import kotlinx.android.synthetic.main.activity_country_details.adView
 import kotlinx.android.synthetic.main.activity_country_details.countryName
 import kotlinx.android.synthetic.main.activity_country_details.flag
 import kotlinx.android.synthetic.main.activity_country_details.latestUpdateValue
@@ -95,6 +97,8 @@ class CountryDetails : AppCompatActivity() {
         localConfirmedView.setValue(latest.confirmed.format())
         localDeadView.setValue(latest.deaths.format())
         localRecoveredView.setValue(latest.recovered.format())
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 
     private fun setupTabs() {

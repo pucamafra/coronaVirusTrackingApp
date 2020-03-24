@@ -3,10 +3,7 @@ package com.marlonmafra.coronavirustrackingapp.features.splash
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.marlonmafra.coronavirustrackingapp.data.CoronaTrackingDataSource
-import com.marlonmafra.coronavirustrackingapp.features.home.countries.CountryListItem
-import com.marlonmafra.coronavirustrackingapp.model.Location
 import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
-import eu.davidea.flexibleadapter.items.AbstractFlexibleItem
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

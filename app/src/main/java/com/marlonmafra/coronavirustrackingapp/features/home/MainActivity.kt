@@ -7,12 +7,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.ads.AdRequest
 import com.marlonmafra.coronavirustrackingapp.CoronaTrackingApplication
 import com.marlonmafra.coronavirustrackingapp.R
 import com.marlonmafra.coronavirustrackingapp.extensions.showSnackBar
 import com.marlonmafra.coronavirustrackingapp.features.home.countries.CountriesFragment
 import com.marlonmafra.coronavirustrackingapp.features.home.overview.OverviewFragment
 import com.marlonmafra.coronavirustrackingapp.network.TrackingResponse
+import kotlinx.android.synthetic.main.activity_main.adView
 import kotlinx.android.synthetic.main.activity_main.segmentedTab
 import kotlinx.android.synthetic.main.activity_main.swipeRefreshLayout
 import kotlinx.android.synthetic.main.activity_main.viewPager
@@ -84,5 +86,8 @@ class MainActivity : AppCompatActivity() {
             setOnRefreshListener { homeViewModel.load() }
             setColorSchemeColors(*resources.getIntArray(R.array.swipe_refresh_colors))
         }
+
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
     }
 }
