@@ -1,0 +1,4 @@
+<resources>
+    <string name="admob_main_key" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="admob_country_details_key" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+</resources>
